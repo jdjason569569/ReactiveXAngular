@@ -14,8 +14,11 @@ import { ObsService } from './services/obs.service';
 })
 export class AppComponent implements OnInit{
   title = 'observable-subscripcion';
+  message:string = '';
 
-  constructor(private obsService: ObsService){}
+  constructor(private obsService: ObsService){
+    this.getUpdatedMessage();
+  }
 
   public ngOnInit(): void {
     //this.observableSubscribe();
@@ -202,19 +205,34 @@ export class AppComponent implements OnInit{
 
   //Subject: observable que puede obtener multiples subscripciones
   subjects(){
-    const subject = new Subject<number>();
+    //Ejemplo1
+    // const subject = new Subject<number>();
 
-    subject.subscribe({
-      next: (n: any) => console.log(`${n}`)
-    });
+    // subject.subscribe({
+    //   next: (n: any) => console.log(`${n}`)
+    // });
 
-    subject.subscribe({
-      next: (n: any) => console.log(`${n + 1}`)
-    });
+    // subject.subscribe({
+    //   next: (n: any) => console.log(`${n + 1}`)
+    // });
+    // subject.next(1);
+    // subject.next(2);
 
-    subject.next(1);
-    subject.next(2);
+    //Ejemplo2
 
+
+  }
+  getUpdatedMessage() {
+    this.obsService.messageSubject.subscribe(
+      (res) => {
+        this.message = res;
+      }
+    )
+  }
+
+  setMessage() {
+    let message = (<HTMLInputElement>document.getElementById("message")).value;
+    this.obsService.setMessage(message);
   }
 
 }
