@@ -219,12 +219,13 @@ export class AppComponent implements OnInit{
     // subject.next(2);
 
     //Ejemplo2
+    //getUpdatedMessage();
+    //setMessage();
 
 
   }
   getUpdatedMessage() {
-    this.obsService.messageSubject.subscribe(
-      (res) => {
+    this.obsService.messageSubject.subscribe((res) => {
         this.message = res;
       }
     )

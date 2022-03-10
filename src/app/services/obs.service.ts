@@ -12,7 +12,6 @@ export class ObsService {
 
   messageSubject = new Subject<string>();
 
-
   setMessage(value: string){
     this.messageSubject.next(value);
   }
